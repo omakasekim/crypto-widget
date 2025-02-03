@@ -1,0 +1,70 @@
+
+const { app, BrowserWindow } = require('electron');
+const path = require('path');
+
+function createWindow () {
+  const win = new BrowserWindow({
+    width: 350,
+    height: 250,
+    frame: false,            // 창 테두리 제거 (위젯 느낌)
+    alwaysOnTop: true,       // 항상 위에 표시
+    transparent: true,       // 배경을 투명하게
+    webPreferences: {
+      preload: path.join(__dirname, 'renderer.js'),
+      nodeIntegration: true,
+      contextIsolation: false,
+    }
+  });
+
+  win.loadFile('index.html');
+  // 개발 시 콘솔을 열어 디버깅 가능
+  // win.webContents.openDevTools();
+}
+
+app.whenReady().then(createWindow);
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') app.quit();
+});
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crypto Widget</title>
+  <style>
+    body {
+      -webkit-app-region: drag;
+      margin: 0;
+      padding: 10px;
+      background: rgba(20,20,20,0.8);
+      color: white;
+      font-family: Arial, sans-serif;
+      user-select: none;
+    }
+    input, button {
+      -webkit-app-region: no-drag;
+      margin: 5px 0;
+      padding: 5px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div id="exchange"></div>
+  <div id="btc"></div>
+  <div id="eth"></div>
+  <div id="usdt"></div>
+
+  <!-- Custom KRW Exchange Rate Input -->
+  <div>
+    <label for="custom-krw-rate">Custom KRW Exchange Rate:</label>
+    <input type="number" id="custom-krw-rate" placeholder="Enter KRW per USD" step="0.1">
+    <button id="saveCustomRate">Save</button>
+    <button id="resetValues">Reset to Live</button>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
