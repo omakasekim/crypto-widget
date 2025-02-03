@@ -28,7 +28,7 @@ You need **Node.js** installed. If you don’t have it, download it [here](https
 Clone this repository and install dependencies:
 
 ```bash
-git clone https://github.com/your-repo/crypto-widget.git
+git clone https://github.com/omakasekim/crypto-widget.git
 cd crypto-widget
 npm install
 ```
