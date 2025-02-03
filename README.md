@@ -108,7 +108,7 @@ electron-packager . MyWidget --platform=win32 --arch=x64 --out=release-builds --
 
 ## ⚖️ License
 
-MIT License © 2025 [Your Name](https://github.com/omakasekim)
+MIT License © 2025 [Jeffrey Kim](https://github.com/omakasekim)
 
 ---
 
